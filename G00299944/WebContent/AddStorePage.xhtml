@@ -12,7 +12,9 @@
     <h:form>
 		<h:commandButton value="Add Store" action="#storeController."></h:commandButton>
 		Store Name: <h:inputText value="#{store.name}"/>
-		Founded: <h:inputText value="#{store.founded}"/>
+		Founded: <h:inputText value="#{store.founded}"> 
+			<f:convertDateTime pattern="yyyy-MM-dd" />
+		</h:inputText>
 		<h:commandButton value="Add" action="#{storeController.addStore(store)}"/>
    </h:form>
 </h:body>

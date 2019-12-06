@@ -42,7 +42,7 @@ public class StoreController {
 			return "index";
 		} catch (SQLIntegrityConstraintViolationException e) {
 			FacesMessage message = 
-					new FacesMessage("Error: Store ID already exists");
+					new FacesMessage("Error: Store Name already exists");
 					FacesContext.getCurrentInstance().addMessage(null, message);
 		} catch (CommunicationsException e) {
 			FacesMessage message = 

@@ -1,7 +1,7 @@
 package com.shops;
 
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -48,6 +48,7 @@ public class DAO {
 			Store store = new Store();
 			store.setId(myRs.getInt("id"));
 			store.setName(myRs.getString("name"));
+			store.setFounded(myRs.getDate("founded"));
 			
 			stores.add(store);
 		}
@@ -55,16 +56,17 @@ public class DAO {
 		return stores;
 	}
 	
-	public void addStore(Store store) throws Exception {
+	public void addStore(Store store) throws Exception { // https://stackoverflow.com/questions/20088808/data-truncation-incorrect-datetime-value
 		Connection myConn = null;
 		java.sql.PreparedStatement myStmt = null;
 		ResultSet myRs = null;
 		
 		myConn = mysqlDS.getConnection();
-		String sql = "insert into store values (?, ?)";
+		String sql = "insert into store values (?, ?, ?)";
 		myStmt = myConn.prepareStatement(sql);
+		myStmt.setInt(1, store.getId());
 		myStmt.setString(2, store.getName());
-		myStmt.setDate(3, store.getDate());
+		myStmt.setString(3, store.getFounded().toString());
 		myStmt.execute();			
 	}
 

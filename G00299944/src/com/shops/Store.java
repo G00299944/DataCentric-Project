@@ -1,6 +1,7 @@
 package com.shops;
 
-import java.sql.Date;
+import java.util.Date;
+
 import javax.faces.bean.ManagedBean;
 
 @ManagedBean
@@ -11,10 +12,10 @@ public class Store {
 	private Date founded;
 
 	
-	public Date getDate() {
+	public Date getFounded() {
 		return founded;
 	}
-	public void setDate(Date date) {
+	public void setFounded(Date date) {
 		this.founded = date;
 	}
 	public String getName() {
