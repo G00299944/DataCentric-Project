@@ -1,6 +1,5 @@
 package com.shops;
 
-import java.util.Date;
 
 import javax.faces.bean.ManagedBean;
 
@@ -9,14 +8,14 @@ public class Store {
 	
 	private int id;
 	private String name;
-	private Date founded;
+	private String founded;
 
 	
-	public Date getFounded() {
+	public String getFounded() {
 		return founded;
 	}
-	public void setFounded(Date date) {
-		this.founded = date;
+	public void setFounded(String founded) {
+		this.founded = founded;
 	}
 	public String getName() {
 		return name;

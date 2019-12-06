@@ -18,6 +18,11 @@
 			<h:column><f:facet name="header">Store ID</f:facet>#{s.id}</h:column>
 			<h:column><f:facet name="header">Name</f:facet>#{s.name}</h:column>
 			<h:column><f:facet name="header">Founded</f:facet>#{s.founded}</h:column>
+			<h:column>
+				<f:facet name="header">Action</f:facet>
+				<h:link value="Show Products" action=""/>	
+				<h:link value=" Delete"/>
+			</h:column>
 		</h:dataTable>
 		<br/>	
 		<h:commandLink value="Home" action="index"/>	
