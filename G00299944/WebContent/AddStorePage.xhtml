@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Add Store</title>
+</h:head>
+
+<h:outputStylesheet library="css" name="tables.css" />
+<h:body>
+    <h:form>
+		<h:commandButton value="Add Store" action="#storeController."></h:commandButton>
+		Store Name: <h:inputText value="#{store.name}"/>
+		Founded: <h:inputText value="#{store.founded}"/>
+		<h:commandButton value="Add" action="#{storeController.addStore(store)}"/>
+   </h:form>
+</h:body>
+</html>

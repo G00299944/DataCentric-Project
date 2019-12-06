@@ -1,6 +1,7 @@
 package com.shops;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -8,6 +9,8 @@ import java.util.ArrayList;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+
+import com.mysql.jdbc.PreparedStatement;
 
 
 public class DAO {
@@ -50,6 +53,19 @@ public class DAO {
 		}
 		
 		return stores;
+	}
+	
+	public void addStore(Store store) throws Exception {
+		Connection myConn = null;
+		java.sql.PreparedStatement myStmt = null;
+		ResultSet myRs = null;
+		
+		myConn = mysqlDS.getConnection();
+		String sql = "insert into store values (?, ?)";
+		myStmt = myConn.prepareStatement(sql);
+		myStmt.setString(2, store.getName());
+		myStmt.setDate(3, store.getDate());
+		myStmt.execute();			
 	}
 
 }
