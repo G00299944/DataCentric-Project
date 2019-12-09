@@ -129,8 +129,7 @@ public class DAO {
 	
 	public void addStore(Store store) throws Exception { 
 		Connection myConn = null;
-		java.sql.PreparedStatement myStmt = null;
-		ResultSet myRs = null;
+		java.sql.PreparedStatement myStmt = null;	
 		
 		myConn = mysqlDS.getConnection();
 		String sql = "insert into store values (?, ?, ?)";

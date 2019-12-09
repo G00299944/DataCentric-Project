@@ -8,12 +8,6 @@ public class HeadOffice {
 	private int id;
 	private String location;
 	
-	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
-	}
-	
 	
 	public int getId() {
 		return id;

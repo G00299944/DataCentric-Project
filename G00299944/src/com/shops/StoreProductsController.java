@@ -36,8 +36,5 @@ public class StoreProductsController {
 	public ArrayList<StoreProducts> getStoreProducts() {
 		return storeProducts;
 	}
-//
-//	public void setStoreProducts(ArrayList<StoreProducts> storeProducts) {
-//		this.storeProducts = storeProducts;
-//	}
+
 }
