@@ -2,6 +2,11 @@ package com.shops;
 
 import java.util.ArrayList;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+@ManagedBean
+@SessionScoped
 public class StoreProductsController {
 
 	DAO dao;
@@ -16,15 +21,23 @@ public class StoreProductsController {
 		}
 	}
 	
-	public void loadStoreProducts() {
+	public String loadStoreProducts(int id) {
 		try {
-			storeProducts = dao.loadStoreProducts();
+			System.out.println("StoreProductsController.loadStoreProducts()");
+			storeProducts = dao.loadStoreProducts(id);
+			return "StoreProductsPage";
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("testtest");
+		return null;
 	}
 	
 	public ArrayList<StoreProducts> getStoreProducts() {
 		return storeProducts;
 	}
+//
+//	public void setStoreProducts(ArrayList<StoreProducts> storeProducts) {
+//		this.storeProducts = storeProducts;
+//	}
 }

@@ -20,8 +20,8 @@
 			<h:column><f:facet name="header">Founded</f:facet>#{s.founded}</h:column>
 			<h:column>
 				<f:facet name="header">Action</f:facet>
-				<h:link value="Show Products" action="#{storeProductsController.}"/>	
-				<h:link value=" Delete"/>
+				<h:commandLink value="Show Products " action="#{storeProductsController.loadStoreProducts(s.id)}"/>	
+				<h:commandLink value="Delete" action="#{storeController.deleteStore(s.id)}" />
 			</h:column>
 		</h:dataTable>
 		<br/>	

@@ -25,7 +25,7 @@ public class StoreController {
 	}
 	
 	public void loadStores() {
-		System.out.println("test()");
+		System.out.println("StoreController.loadStores()");
 		try {
 			stores = dao.loadStores();
 		} catch (Exception e) {
@@ -37,10 +37,32 @@ public class StoreController {
 		System.out.println(s.getId() + " " + s.getName());
 		try {
 			dao.addStore(s);
-			return "index";
+			return "ManageStoresPage";
 		} catch (SQLIntegrityConstraintViolationException e) {
 			FacesMessage message = 
 					new FacesMessage("Error: Store Name already exists");
+					FacesContext.getCurrentInstance().addMessage(null, message);
+		} catch (CommunicationsException e) {
+			FacesMessage message = 
+					new FacesMessage("Error: Can't communicate with DB");
+					FacesContext.getCurrentInstance().addMessage(null, message);
+		}catch (Exception e) {
+			FacesMessage message = 
+					new FacesMessage("Error: " + e.getMessage());
+					FacesContext.getCurrentInstance().addMessage(null, message);
+
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public String deleteStore(int id) {		
+		try {
+			dao.deleteStore(id);
+			return "index";
+		} catch (SQLIntegrityConstraintViolationException e) {
+			FacesMessage message = 
+					new FacesMessage("Error: Store Name already exists"); // TODO FIX
 					FacesContext.getCurrentInstance().addMessage(null, message);
 		} catch (CommunicationsException e) {
 			FacesMessage message = 

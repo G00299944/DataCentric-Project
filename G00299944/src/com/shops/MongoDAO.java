@@ -23,4 +23,6 @@ public class MongoDAO {
 		database = mongoClient.getDatabase(mongoDB);
 		collection = database.getCollection(mongoCollection);
 	}
+	
+
 }

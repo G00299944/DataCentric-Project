@@ -1,0 +1,3 @@
+mongoimport --db=storeHeadOfficeDB --collection=storeHeadOffice --file=<C:\Users\g00299944\Desktop\DataCentric-Project\storeHeadOfficeDB.txt
+
+db.storeHeadOffice.find().pretty()

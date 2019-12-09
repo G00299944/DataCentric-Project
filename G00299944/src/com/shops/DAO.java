@@ -3,6 +3,7 @@ package com.shops;
 import java.sql.Connection;
 import java.util.Date;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
@@ -53,6 +54,9 @@ public class DAO {
 			stores.add(store);
 		}
 		
+		myConn.close();
+		myStmt.close();
+		
 		return stores;
 	}
 	
@@ -83,10 +87,13 @@ public class DAO {
 			products.add(product);
 		}
 		
+		myConn.close();
+		myStmt.close();
+		
 		return products;
 	}
 	
-	public ArrayList<StoreProducts> loadStoreProducts() throws Exception {
+	public ArrayList<StoreProducts> loadStoreProducts(int id) throws Exception {
 		
 		Connection myConn = null;
 		Statement myStmt = null;
@@ -94,7 +101,7 @@ public class DAO {
 		
 		myConn = mysqlDS.getConnection();
 
-		String sql = "select * from product";
+		String sql = "select p.pid, p.prodName, p.price, s.name, s.id from product p inner join store s on p.sid = s.id where p.sid like " + id;
 
 		myStmt = myConn.createStatement();
 
@@ -105,54 +112,20 @@ public class DAO {
 		// process result set
 		while (myRs.next()) {
 			StoreProducts sp = new StoreProducts();
-			sp.setPid(myRs.getInt(1));
-			sp.setSid(myRs.getInt(2));
-			sp.setProdName(myRs.getString(3));
-			sp.setPrice(myRs.getDouble(4));
-			sp.setStoreName(myRs.getString(6));
+			sp.setPid(myRs.getInt("pid"));
+			sp.setSid(myRs.getInt("id"));
+			sp.setProdName(myRs.getString("prodName"));
+			sp.setPrice(myRs.getDouble("price"));
+			sp.setStoreName(myRs.getString("name"));
 			
 			storeProducts.add(sp);
 		}
 		
+		myConn.close();
+		myStmt.close();
+		
 		return storeProducts;
 	}
-	
-//	public ArrayList<StoreProduct> loadStoreProducts(int sid) throws Exception {
-//		
-//		Connection myConn = null;
-//		Statement myStmt = null;
-//		ResultSet myRs = null;
-//		
-//		myConn = mysqlDS.getConnection();
-//
-//		String sql = "select p.pid, p.prodName, p.price, s.id, s.name, s.founded "
-//				+ "from product p "
-//				+ "inner join store s on p.sid = s.id "
-//				+ "where p.sid = " + sid; 
-//
-//		myStmt = myConn.createStatement();
-//
-//		myRs = myStmt.executeQuery(sql);
-//		
-//		ArrayList<StoreProduct> storeProducts = new ArrayList<StoreProduct>();
-//
-//		// process result set
-//		while (myRs.next()) {
-//			StoreProduct sp = new StoreProduct();
-//			
-//			sp.setProductId(myRs.getInt(1));
-//			sp.setProductName(myRs.getString(2));
-//			sp.setPrice(myRs.getDouble(3));
-//			sp.setSid(myRs.getInt(4));
-//			sp.setStoreName(myRs.getString(5));
-//			sp.setProductName(myRs.getString(6));
-//			
-//			storeProducts.add(sp);
-//		}
-//		
-//		return storeProducts;
-//	}
-
 	
 	public void addStore(Store store) throws Exception { 
 		Connection myConn = null;
@@ -167,6 +140,29 @@ public class DAO {
 		myStmt.setString(3, store.getFounded());
 		myStmt.execute();	
 		
+	}
+	
+	public void deleteStore(int id) throws Exception {
+		
+		Connection myConn = null;
+		java.sql.PreparedStatement myStmt = null;
+		
+		myConn = mysqlDS.getConnection();
+		String sql = "delete from store where id like " + id;
+		myStmt = myConn.prepareStatement(sql);
+		myStmt.execute();	
+		
+	}
+	
+	public void deleteProduct(int id) throws Exception {
+		
+		Connection myConn = null;
+		java.sql.PreparedStatement myStmt = null;
+		
+		myConn = mysqlDS.getConnection();
+		String sql = "delete from product where pid like " + id;
+		myStmt = myConn.prepareStatement(sql);
+		myStmt.execute();	
 	}
 
 }
