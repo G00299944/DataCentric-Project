@@ -101,7 +101,7 @@ public class DAO {
 		
 		myConn = mysqlDS.getConnection();
 
-		String sql = "select p.pid, p.prodName, p.price, s.name, s.id from product p inner join store s on p.sid = s.id where p.sid like " + id;
+		String sql = "select p.pid, p.prodName, p.price, s.name, s.founded, s.id from product p inner join store s on p.sid = s.id where p.sid like " + id;
 
 		myStmt = myConn.createStatement();
 
@@ -117,6 +117,7 @@ public class DAO {
 			sp.setProdName(myRs.getString("prodName"));
 			sp.setPrice(myRs.getDouble("price"));
 			sp.setStoreName(myRs.getString("name"));
+			sp.setFounded(myRs.getString("founded"));
 			
 			storeProducts.add(sp);
 		}

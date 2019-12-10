@@ -10,7 +10,14 @@ public class StoreProducts {
 	private String prodName;
 	private double price;
 	private String storeName;
+	private String founded;
 	
+	public String getFounded() {
+		return founded;
+	}
+	public void setFounded(String founded) {
+		this.founded = founded;
+	}
 	public int getPid() {
 		return pid;
 	}

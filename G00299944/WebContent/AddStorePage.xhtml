@@ -8,11 +8,15 @@
 </h:head>
 
 <h:outputStylesheet library="css" name="tables.css" />
+<h:outputStylesheet library="css" name="styles.css" />
+
 <h:body>
+	<h:messages class="error" globalOnly="true"/>
     <h:form>
-		<h:commandButton value="Add Store" action="#storeController."></h:commandButton>
-		Store Name: <h:inputText value="#{store.name}"/>
-		Founded: <h:inputText value="#{store.founded}"/> 
+		Store Name: <h:inputText id="storeName" value="#{store.name}" required="true" requiredMessage="Error: Store Name is mandatory"/><br/>
+		<h:message class="error" for="storeName" message="error"/><br/>
+		Founded: <h:inputText id="founded" value="#{store.founded}" required="true" requiredMessage="Error: Founded is mandatory"/><br/>
+		<h:message class="error" for="founded" message="error"/><br/>
 		<h:commandButton value="Add" action="#{storeController.addStore(store)}"/>
    </h:form>
 </h:body>

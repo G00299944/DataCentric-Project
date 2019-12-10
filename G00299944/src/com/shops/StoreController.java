@@ -41,7 +41,7 @@ public class StoreController {
 		} catch (SQLIntegrityConstraintViolationException e) {
 			FacesMessage message = 
 					new FacesMessage("Error: Store Name already exists");
-					FacesContext.getCurrentInstance().addMessage(null, message);
+					FacesContext.getCurrentInstance().addMessage(null, message); return null;
 		} catch (CommunicationsException e) {
 			FacesMessage message = 
 					new FacesMessage("Error: Can't communicate with DB");

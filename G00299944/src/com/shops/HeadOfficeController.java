@@ -10,8 +10,7 @@ import javax.faces.context.FacesContext;
 
 import com.mysql.jdbc.CommunicationsException;
 
-@ManagedBean
-@SessionScoped
+@ManagedBean @SessionScoped
 public class HeadOfficeController {
 
 	MongoDAO mdao;
@@ -31,7 +30,6 @@ public class HeadOfficeController {
 	}
 	
 	public void loadHeadOffices() {
-		//System.out.println(this.getClass().getName() + ".loadHeadOffices()");
 		try {
 			headOffices = mdao.loadHeadOffices();
 		} catch (Exception e) {
