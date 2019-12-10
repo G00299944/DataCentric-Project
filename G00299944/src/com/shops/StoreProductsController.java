@@ -1,9 +1,12 @@
 package com.shops;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 @ManagedBean
 @SessionScoped
@@ -11,7 +14,7 @@ public class StoreProductsController {
 
 	DAO dao;
 	ArrayList<StoreProducts> storeProducts;
-	
+
 	public StoreProductsController() {
 		super();
 		try {
@@ -20,19 +23,20 @@ public class StoreProductsController {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public String loadStoreProducts(int id) {
 		try {
-			System.out.println("StoreProductsController.loadStoreProducts()");
 			storeProducts = dao.loadStoreProducts(id);
 			return "StoreProductsPage";
-		} catch (Exception e) {
+		} catch (SQLException e) {
+			FacesMessage message = new FacesMessage("Error: Can't communicate with DB");
+			FacesContext.getCurrentInstance().addMessage(null, message);
+		}catch (Exception e) {
 			e.printStackTrace();
 		}
-		System.out.println("testtest");
 		return null;
 	}
-	
+
 	public ArrayList<StoreProducts> getStoreProducts() {
 		return storeProducts;
 	}

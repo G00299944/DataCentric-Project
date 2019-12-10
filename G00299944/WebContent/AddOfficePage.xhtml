@@ -7,12 +7,22 @@
 	<title>Add Office Page</title>
 </h:head>
 
-<h:outputStylesheet library="css" name="tables.css" />
+<h:outputStylesheet library="css" name="styles.css" />
 <h:body>
-    <h:form>
-		Office ID: <h:inputText value="#{headOffice.id}"/>
-		Location: <h:inputText value="#{headOffice.location}"/> 
-		<h:commandButton value="Add" action="#{headOfficeController.addHeadOffice(headOffice)}"/>
-   </h:form>
+	<h:messages class="error" globalOnly="true" />
+	<h:form>
+		Office ID: <h:inputText id="officeID" value="#{headOffice.id}"
+			required="true" requiredMessage="Error: Office ID is mandatory" />
+		<br />
+		<h:message class="error" for="officeID" message="error" />
+		<br />
+		Location: <h:inputText id="location" value="#{headOffice.location}"
+			required="true" requiredMessage="Error: Office Location is mandatory" />
+		<br />
+		<h:message class="error" for="location" message="error" />
+		<br />
+		<h:commandButton value="Add"
+			action="#{headOfficeController.addHeadOffice(headOffice)}" />
+	</h:form>
 </h:body>
 </html>
